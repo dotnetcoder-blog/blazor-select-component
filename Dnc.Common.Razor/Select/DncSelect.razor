@@ -1,0 +1,61 @@
+﻿@using System.Diagnostics.CodeAnalysis
+@using System.Linq.Expressions
+@using System.Globalization
+@using Microsoft.AspNetCore.Components.Forms
+@inherits InputBase<TValue>
+@typeparam TValue
+
+<select class="form-select" @bind="SelectedValue">
+    @ChildContent
+</select>
+
+
+@code {
+
+    [Parameter]
+    public RenderFragment ChildContent { get; set; }
+
+    [Parameter]
+    public Func<string, TValue> TypeConverter { get; set; }
+
+    [Parameter]
+    public CultureInfo CultureInfo { get; set; }
+
+    public string SelectedValue
+    {
+        get { return CurrentValueAsString; }
+        set { CurrentValueAsString = value; }
+    }
+
+    protected override bool TryParseValueFromString(string value,
+        [MaybeNullWhen(false)] out TValue result, [NotNullWhen(false)] out string validationErrorMessage)
+    {
+        try
+        {
+            if (TypeConverter != null)
+            {
+                result = TypeConverter(value);
+            }
+            else
+            {
+                if (CultureInfo != null)
+                {
+                    result = DncConverter.ChangeType<TValue>(value, CultureInfo);
+                }
+                else
+                {
+                    result = DncConverter.ChangeType<TValue>(value);
+                }
+            }
+             
+            validationErrorMessage = null;
+            return true;
+        }
+        catch (Exception ex)
+        {
+            result = default(TValue);
+            validationErrorMessage = ex.Message;
+            return false;
+        }
+    }
+}

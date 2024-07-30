@@ -1,0 +1,79 @@
+﻿@page "/"
+@using System.Text.Json
+@using System.ComponentModel.DataAnnotations
+@using System.Globalization
+
+<PageTitle>Home</PageTitle>
+
+<div class="container">
+    <p class=" alert alert-info my-3">@JsonSerializer.Serialize(MyEmployee);</p>
+
+    <EditForm Model="@MyEmployee" OnValidSubmit="HandleValidSubmit">
+
+        <label class="form-label my-3">Age</label>
+
+        <DncSelect @bind-Value="@MyEmployee.Age" TypeConverter="@((v) => int.Parse(v))">
+            <DncOption Value="default(int)" IsDefaultOption>Select Age</DncOption>
+            <DncOption Value="30" />
+            <DncOption Value="40" />
+            <DncOption Value="50" Disabled />
+        </DncSelect>
+
+        <label class="form-label my-3">Gender</label>
+
+        <DncSelect @bind-Value="@MyEmployee.Gender" TypeConverter="@(v=> Enum.Parse<Gender>(v))">
+            <DncOption Value="default(Gender)" IsDefaultOption="true">Select Gender</DncOption>
+            <DncOption Value="@Gender.Male" />
+            <DncOption Value="@Gender.Female" />
+        </DncSelect>
+
+
+        <label class="form-label my-3">Contract Expiration</label>
+
+        <DncSelect @bind-Value="@MyEmployee.ContractTill" CultureInfo="@(new CultureInfo("en-IE"))">
+            <DncOption Value="default(DateTime)" IsDefaultOption="true">Select Contract Expiration</DncOption>
+            <DncOption Value="@(new DateTime(2030, 7,7))">
+                @(new DateTime(2030, 7, 7).ToString("yyyy-mm-dd"))
+            </DncOption>
+            <DncOption Value="@(new DateTime(2035, 7,7))">
+                @(new DateTime(2035, 7, 7).ToString("yyyy-mm-dd"))
+            </DncOption>
+        </DncSelect>
+
+        <div class="form-group my-5">
+            <button class="btn btn-primary">Submit</button>
+        </div>
+    </EditForm>
+</div>
+
+
+
+@code{
+
+    public Employee MyEmployee {get; set;}
+
+    protected override void OnInitialized()
+    {
+        MyEmployee = new Employee
+            {
+                Name = "Net Coder",
+            };
+    }
+
+    public void HandleValidSubmit()
+    {
+        // insert it to the database
+    }
+
+    public class Employee {
+        public string Name { get; set; }
+        public int Age { get; set; }
+        public Gender Gender { get; set; }
+        public DateTime ContractTill { get; set; }
+    }
+
+    public enum Gender {
+        Male,
+        Female
+    }
+}

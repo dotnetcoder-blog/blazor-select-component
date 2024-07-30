@@ -1,0 +1,27 @@
+﻿@typeparam TValue
+
+<option value="@Value" disabled="@Disabled" selected="@IsDefaultOption">
+
+    @if (ChildContent != null)
+    {
+        @ChildContent
+    }
+    else
+    {
+        @Value
+    }
+</option>
+
+@code {
+    [Parameter]
+    public TValue Value { get; set; }
+
+    [Parameter]
+    public RenderFragment ChildContent { get; set; }
+
+    [Parameter]
+    public bool IsDefaultOption { get; set; }
+
+    [Parameter]
+    public bool Disabled { get; set; }
+}

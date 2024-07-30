@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.9.34902.65
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Dnc.Common.Razor", "Dnc.Common.Razor\Dnc.Common.Razor.csproj", "{DEFFFAC1-FD7A-476F-ABE2-126CCDB69735}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Dnc.Select.WebApp", "Dnc.Select.WebApp\Dnc.Select.WebApp.csproj", "{D6121FD3-D0E3-482A-82A5-0556055EE548}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{DEFFFAC1-FD7A-476F-ABE2-126CCDB69735}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DEFFFAC1-FD7A-476F-ABE2-126CCDB69735}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DEFFFAC1-FD7A-476F-ABE2-126CCDB69735}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DEFFFAC1-FD7A-476F-ABE2-126CCDB69735}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D6121FD3-D0E3-482A-82A5-0556055EE548}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D6121FD3-D0E3-482A-82A5-0556055EE548}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D6121FD3-D0E3-482A-82A5-0556055EE548}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D6121FD3-D0E3-482A-82A5-0556055EE548}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {EFA72ACE-DB5E-479A-BB49-2D5C29565D5D}
+	EndGlobalSection
+EndGlobal
